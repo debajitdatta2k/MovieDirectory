@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.debajit.volley.moviedirectory.Activities.MovieDetailActivity">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardviewDet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+
+            <ImageView
+                android:id="@+id/movieImageIDDet"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@android:color/black" />
+
+            <TextView
+                android:id="@+id/movieTitleIDDet"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_toRightOf="@+id/movieImageIDDet"
+                android:paddingLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/movieReleaseIDDet"
+                android:textSize="15sp"
+                android:layout_toRightOf="@+id/movieImageIDDet"
+                android:layout_below="@+id/movieTitleIDDet"
+                android:paddingLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/movieCatIDDet"
+                android:textSize="15sp"
+                android:layout_toRightOf="@+id/movieImageIDDet"
+                android:layout_below="@+id/movieReleaseIDDet"
+                android:paddingLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/movieRatingIDDet"
+                android:textSize="15sp"
+                android:layout_toRightOf="@+id/movieImageIDDet"
+                android:layout_below="@+id/movieCatIDDet"
+                android:paddingLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/runtimeDet"
+                android:textSize="15sp"
+                android:layout_toRightOf="@+id/movieImageIDDet"
+                android:layout_below="@+id/movieRatingIDDet"
+                android:paddingLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/directedByDet"
+                android:textSize="15sp"
+                android:layout_toRightOf="@+id/movieImageIDDet"
+                android:layout_below="@+id/runtimeDet"
+                android:paddingLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/relativeView"
+        android:background="@color/cardview_light_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/cardviewDet"
+        app:layout_constraintTop_toTopOf="@+id/cardviewDet"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/actorsDet"
+            android:textSize="15sp"
+            android:paddingLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/writersDet"
+            android:textSize="15sp"
+            android:layout_below="@+id/actorsDet"
+            android:paddingLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/plotDet"
+            android:textSize="15sp"
+            android:layout_below="@+id/writersDet"
+            android:paddingLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/boxOfficeDet"
+            android:textSize="15sp"
+            android:layout_below="@+id/plotDet"
+            android:paddingLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>
