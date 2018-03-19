@@ -9,7 +9,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cardviewDet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="511dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,110 +23,124 @@
 
             <ImageView
                 android:id="@+id/movieImageIDDet"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:layout_width="180dp"
+                android:layout_height="240dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:background="@android:color/black" />
 
             <TextView
                 android:id="@+id/movieTitleIDDet"
-                android:textStyle="bold"
-                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/movieImageIDDet"
                 android:paddingLeft="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:text="Title: "
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/movieReleaseIDDet"
-                android:textSize="15sp"
-                android:layout_toRightOf="@+id/movieImageIDDet"
-                android:layout_below="@+id/movieTitleIDDet"
-                android:paddingLeft="5dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movieTitleIDDet"
+                android:layout_marginTop="16dp"
+                android:layout_toEndOf="@+id/movieImageIDDet"
+                android:paddingLeft="5dp"
+                android:text="Release Date: "
+                android:textSize="15sp" />
+
             <TextView
                 android:id="@+id/movieCatIDDet"
-                android:textSize="15sp"
-                android:layout_toRightOf="@+id/movieImageIDDet"
-                android:layout_below="@+id/movieReleaseIDDet"
-                android:paddingLeft="5dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movieReleaseIDDet"
+                android:layout_marginTop="21dp"
+                android:layout_toEndOf="@+id/movieImageIDDet"
+                android:paddingLeft="5dp"
+                android:text="Category: "
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/movieRatingIDDet"
-                android:textSize="15sp"
-                android:layout_toRightOf="@+id/movieImageIDDet"
-                android:layout_below="@+id/movieCatIDDet"
-                android:paddingLeft="5dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movieCatIDDet"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/movieImageIDDet"
+                android:paddingLeft="5dp"
+                android:text="Movie Rating: "
+                android:textSize="15sp" />
+
             <TextView
                 android:id="@+id/runtimeDet"
-                android:textSize="15sp"
-                android:layout_toRightOf="@+id/movieImageIDDet"
-                android:layout_below="@+id/movieRatingIDDet"
-                android:paddingLeft="5dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movieRatingIDDet"
+                android:layout_marginTop="23dp"
+                android:layout_toEndOf="@+id/movieImageIDDet"
+                android:paddingLeft="5dp"
+                android:text="Run Time: "
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/directedByDet"
-                android:textSize="15sp"
-                android:layout_toRightOf="@+id/movieImageIDDet"
-                android:layout_below="@+id/runtimeDet"
-                android:paddingLeft="5dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/runtimeDet"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@+id/movieImageIDDet"
+                android:paddingLeft="5dp"
+                android:text="Directed By: "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/actorsDet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/directedByDet"
+                android:layout_marginTop="31dp"
+                android:paddingLeft="5dp"
+                android:text="Actors: "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/writersDet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/actorsDet"
+                android:layout_marginTop="29dp"
+                android:paddingLeft="5dp"
+                android:text="Writers: "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/plotDet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/writersDet"
+                android:layout_marginTop="27dp"
+                android:paddingLeft="5dp"
+                android:text="Plot: "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/boxOfficeDet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/plotDet"
+                android:layout_marginTop="31dp"
+                android:paddingLeft="5dp"
+                android:text="Box Office: "
+                android:textSize="15sp" />
 
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
-
-    <RelativeLayout
-        android:id="@+id/relativeView"
-        android:background="@color/cardview_light_background"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/cardviewDet"
-        app:layout_constraintTop_toTopOf="@+id/cardviewDet"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/actorsDet"
-            android:textSize="15sp"
-            android:paddingLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/writersDet"
-            android:textSize="15sp"
-            android:layout_below="@+id/actorsDet"
-            android:paddingLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/plotDet"
-            android:textSize="15sp"
-            android:layout_below="@+id/writersDet"
-            android:paddingLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/boxOfficeDet"
-            android:textSize="15sp"
-            android:layout_below="@+id/plotDet"
-            android:paddingLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-    </RelativeLayout>
 
 
 </android.support.constraint.ConstraintLayout>

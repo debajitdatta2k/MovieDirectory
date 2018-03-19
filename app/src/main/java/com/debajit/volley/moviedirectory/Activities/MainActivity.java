@@ -3,13 +3,17 @@ package com.debajit.volley.moviedirectory.Activities;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private MovieRecyclerViewAdapter movieRecyclerViewAdapter;
     private List<Movie> movieList;
     private RequestQueue queue;
+    private AlertDialog.Builder alertDialogBuilder;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                showInputDialogue();
+
             }
         });
 
@@ -58,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        movieList = new ArrayList<>();
-
-
         Prefs prefs = new Prefs(MainActivity.this);
         String search = prefs.getSearch();
-        movieList = getMovieList(search);
+
+        movieList = new ArrayList<>();
+
+        movieList = getMovies(search);
 
         movieRecyclerViewAdapter = new MovieRecyclerViewAdapter(this, movieList);
         recyclerView.setAdapter(movieRecyclerViewAdapter);
@@ -71,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public List<Movie> getMovieList(String searchTerm){
+    public List<Movie> getMovies(String searchTerm){
         movieList.clear();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Constants.URL_LEFT + searchTerm + Constants.URL_RIGHT + Constants.URL_END, new Response.Listener<JSONObject>() {
             @Override
@@ -87,10 +95,14 @@ public class MainActivity extends AppCompatActivity {
                         movie.setTitle(movieObj.getString("Title"));
                         movie.setYear("Year Released: "+movieObj.getString("Year"));
                         movie.setMovieType("Type: "+movieObj.getString("Type"));
-                        movie.setPoster(movieObj.getString("imdID"));
+                        movie.setPoster(movieObj.getString("Poster"));
+                        movie.setImdbId(movieObj.getString("imdbID"));
+                        //Log.d("imdb ID: ",movie.getImdbId().toString());
 
                         movieList.add(movie);
                     }
+
+                    movieRecyclerViewAdapter.notifyDataSetChanged();
 
                 } catch (JSONException e){
                     e.printStackTrace();
@@ -123,10 +135,47 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.new_search) {
+            showInputDialogue();
+            //return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showInputDialogue(){
+
+        alertDialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialogue_view, null);
+        final EditText newSearchEdt = (EditText) view.findViewById(R.id.searchEdt);
+        Button submitButton = (Button) view.findViewById(R.id.submitButton);
+
+        alertDialogBuilder.setView(view);
+        dialog = alertDialogBuilder.create();
+        dialog.show();
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Prefs prefs = new Prefs(MainActivity.this);
+                if (!newSearchEdt.getText().toString().isEmpty()) {
+
+                    String search = newSearchEdt.getText().toString();
+                    prefs.setSearch(search);
+                    movieList.clear();
+
+                    getMovies(search);
+
+                  //  movieRecyclerViewAdapter.notifyDataSetChanged();
+
+                }
+
+                dialog.dismiss();
+
+            }
+        });
+
     }
 }

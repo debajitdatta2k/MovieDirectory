@@ -6,8 +6,8 @@ package com.debajit.volley.moviedirectory.Util;
 
 public class Constants {
 
-    public static final String URL_LEFT = "https://www.ombapi.com/?s=";
-    public static final String URL = "https://www.ombapi.com/?i=";
+    public static final String URL_LEFT = "https://www.omdbapi.com/?s=";
+    public static final String URL = "https://www.omdbapi.com/?i=";
     public static final String URL_RIGHT = "&page=2";
     public static final String URL_END = "&apikey=99073bf3";
 }

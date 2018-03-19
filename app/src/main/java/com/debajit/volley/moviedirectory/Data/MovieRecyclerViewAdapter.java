@@ -3,6 +3,7 @@ package com.debajit.volley.moviedirectory.Data;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,7 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
 
     @Override
     public int getItemCount() {
+
         return movieList.size();
     }
 
@@ -82,6 +84,7 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
                     Movie movie = movieList.get(getAdapterPosition());
                     Intent intent = new Intent(context, MovieDetailActivity.class);
                     intent.putExtra("movie",movie);
+
                     ctx.startActivity(intent);
 
                 }
