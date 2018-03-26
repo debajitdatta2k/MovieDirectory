@@ -60,7 +60,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     private void setUpUI() {
         movieTitle = (TextView) findViewById(R.id.movieTitleIDDet);
         movieImage = (ImageView) findViewById(R.id.movieImageIDDet);
-        movieYear = (TextView) findViewById(R.id.movieRatingIDDet);
+        movieYear = (TextView) findViewById(R.id.movieReleaseIDDet);
         director = (TextView) findViewById(R.id.directedByDet);
         actors = (TextView) findViewById(R.id.actorsDet);
         category = (TextView) findViewById(R.id.movieCatIDDet);
@@ -89,12 +89,13 @@ public class MovieDetailActivity extends AppCompatActivity {
                             JSONObject mRatings = ratings.getJSONObject(ratings.length()-1);
                             source = mRatings.getString("Source");
                             value = mRatings.getString("Value");
-                            rating.setText(source + " : " + value);
+                            rating.setText("Ratings:\n" + source + " : " + value);
                         }else{
                             rating.setText("Ratings : N/A");
                         }
 
                         movieTitle.setText(response.getString("Title"));
+                        category.setText("Category: "+response.getString("Type"));
                         movieYear.setText("Released: "+response.getString("Released"));
                         director.setText("Director: "+response.getString("Director"));
                         writers.setText("Writers: "+response.getString("Writer"));
