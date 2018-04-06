@@ -20,7 +20,6 @@ public class Prefs {
     }
 
     public String getSearch(){
-
         return sharedPreferences.getString("search","Batman");
     }
 

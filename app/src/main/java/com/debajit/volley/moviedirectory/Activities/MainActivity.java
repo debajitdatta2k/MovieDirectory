@@ -1,5 +1,12 @@
 package com.debajit.volley.moviedirectory.Activities;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -45,39 +52,95 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        if (isConnectingToInternet(MainActivity.this)) {
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-        queue = Volley.newRequestQueue(this);
+            queue = Volley.newRequestQueue(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                showInputDialogue();
+                    showInputDialogue();
 
-            }
-        });
+                }
+            });
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Prefs prefs = new Prefs(MainActivity.this);
-        String search = prefs.getSearch();
+            Prefs prefs = new Prefs(MainActivity.this);
+            String search = prefs.getSearch();
 
-        movieList = new ArrayList<>();
+            movieList = new ArrayList<>();
 
-        movieList = getMovies(search);
+            movieList = getMovies(search);
 
-        movieRecyclerViewAdapter = new MovieRecyclerViewAdapter(this, movieList);
-        recyclerView.setAdapter(movieRecyclerViewAdapter);
-        movieRecyclerViewAdapter.notifyDataSetChanged();
-
+            movieRecyclerViewAdapter = new MovieRecyclerViewAdapter(this, movieList);
+            recyclerView.setAdapter(movieRecyclerViewAdapter);
+            movieRecyclerViewAdapter.notifyDataSetChanged();
+        } else {
+            checkNetworkConnection();
+        }
     }
+    public static void restartActivity(Activity activity) {
+        if (Build.VERSION.SDK_INT >= 11) {
+            activity.recreate();
+        } else {
+            activity.finish();
+            activity.startActivity(activity.getIntent());
+        }
+    }
+        public static boolean isConnectingToInternet(Context context)
+        {
+            ConnectivityManager connectivity =
+                    (ConnectivityManager) context.getSystemService(
+                            Context.CONNECTIVITY_SERVICE);
+            if (connectivity != null)
+            {
+                NetworkInfo[] info = connectivity.getAllNetworkInfo();
+                if (info != null)
+                    for (int i = 0; i < info.length; i++)
+                        if (info[i].getState() == NetworkInfo.State.CONNECTED)
+                        {
+                            return true;
+                        }
+            }
+            return false;
+        }
+        public void checkNetworkConnection(){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("No Internet Connection");
+            builder.setMessage("Please check your internet connection to continue");
+            builder.setPositiveButton("Retry", new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    if(!isConnectingToInternet(MainActivity.this))
+                        checkNetworkConnection();
+                    else
+                        restartActivity(MainActivity.this);
+                }
+            });
+            builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                    System.exit(0);
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
 
     public List<Movie> getMovies(String searchTerm){
         movieList.clear();
@@ -97,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
                         movie.setMovieType("Type: "+movieObj.getString("Type"));
                         movie.setPoster(movieObj.getString("Poster"));
                         movie.setImdbId(movieObj.getString("imdbID"));
-                        //Log.d("imdb ID: ",movie.getImdbId().toString());
 
                         movieList.add(movie);
                     }
@@ -178,4 +240,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 }
